@@ -1,0 +1,120 @@
+ Image prova-primeiro-bimestre-devops-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 641B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 689B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#3 DONE 2.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 137B 0.0s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 43.52kB 0.1s done
+#5 DONE 0.1s
+
+#6 [dependencies 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c
+#6 resolve docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c 0.1s done
+#6 DONE 0.2s
+
+#6 [dependencies 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c
+#6 sha256:dc40c63c08b5453854c13da6d72b3182737b2e223156b786c67779e0d6f4e8e0 0B / 446B 0.2s
+#6 sha256:dc40c63c08b5453854c13da6d72b3182737b2e223156b786c67779e0d6f4e8e0 446B / 446B 0.2s done
+#6 sha256:8d9d84ee31888adba85837fbf8f0e6eca99263904b2ba04d79e7d4fc1da40056 0B / 1.71MB 0.3s
+#6 sha256:8ab8fd6c944526e5da2ca93b1663b2ab6f4bb8d4ea7b50a90d53c9fdcc5b0b9e 0B / 3.31kB 0.2s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 0B / 49.84MB 0.2s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 0B / 28.24MB 0.2s
+#6 sha256:8d9d84ee31888adba85837fbf8f0e6eca99263904b2ba04d79e7d4fc1da40056 1.05MB / 1.71MB 0.6s
+#6 sha256:8ab8fd6c944526e5da2ca93b1663b2ab6f4bb8d4ea7b50a90d53c9fdcc5b0b9e 3.31kB / 3.31kB 0.5s done
+#6 sha256:8d9d84ee31888adba85837fbf8f0e6eca99263904b2ba04d79e7d4fc1da40056 1.71MB / 1.71MB 0.7s done
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 4.19MB / 49.84MB 1.1s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 7.34MB / 49.84MB 1.4s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 11.53MB / 49.84MB 1.8s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 2.10MB / 28.24MB 1.7s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 15.73MB / 49.84MB 2.3s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 18.87MB / 49.84MB 2.7s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 4.19MB / 28.24MB 2.4s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 22.02MB / 49.84MB 3.0s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 6.29MB / 28.24MB 3.0s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 25.17MB / 49.84MB 3.5s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 8.39MB / 28.24MB 3.5s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 28.31MB / 49.84MB 3.9s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 10.49MB / 28.24MB 3.9s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 31.46MB / 49.84MB 4.5s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 12.58MB / 28.24MB 4.2s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 14.68MB / 28.24MB 4.6s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 34.60MB / 49.84MB 5.1s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 16.78MB / 28.24MB 4.9s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 18.87MB / 28.24MB 5.2s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 37.75MB / 49.84MB 5.7s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 20.97MB / 28.24MB 5.5s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 40.89MB / 49.84MB 6.1s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 23.07MB / 28.24MB 5.8s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 25.17MB / 28.24MB 6.3s
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 44.04MB / 49.84MB 6.9s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 28.24MB / 28.24MB 6.7s done
+#6 extracting sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 47.19MB / 49.84MB 7.3s
+#6 extracting sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 0.6s done
+#6 extracting sha256:8ab8fd6c944526e5da2ca93b1663b2ab6f4bb8d4ea7b50a90d53c9fdcc5b0b9e
+#6 sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 49.84MB / 49.84MB 7.6s done
+#6 extracting sha256:8ab8fd6c944526e5da2ca93b1663b2ab6f4bb8d4ea7b50a90d53c9fdcc5b0b9e 0.0s done
+#6 extracting sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5
+#6 extracting sha256:61592f5b60306b96e5208206668cdf0fa62d3cda3a3baeed26efdcd1a21aaba5 0.8s done
+#6 DONE 8.7s
+
+#6 [dependencies 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c
+#6 extracting sha256:8d9d84ee31888adba85837fbf8f0e6eca99263904b2ba04d79e7d4fc1da40056 0.0s done
+#6 extracting sha256:dc40c63c08b5453854c13da6d72b3182737b2e223156b786c67779e0d6f4e8e0 0.0s done
+#6 DONE 8.8s
+
+#7 [dependencies 2/4] WORKDIR /app
+#7 DONE 0.2s
+
+#8 [dependencies 3/4] COPY package.json package-lock.json ./
+#8 DONE 0.0s
+
+#9 [dependencies 4/4] RUN npm ci --omit=dev && npm cache clean --force
+#9 1.261 
+#9 1.261 added 82 packages, and audited 83 packages in 1s
+#9 1.261 
+#9 1.261 28 packages are looking for funding
+#9 1.261   run `npm fund` for details
+#9 1.262 
+#9 1.262 found 0 vulnerabilities
+#9 1.263 npm notice
+#9 1.263 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+#9 1.263 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#9 1.263 npm notice To update run: npm install -g npm@12.2.0
+#9 1.263 npm notice
+#9 1.341 npm warn using --force Recommended protections disabled.
+#9 DONE 1.5s
+
+#10 [runtime 3/5] COPY --from=dependencies --chown=node:node /app/node_modules ./node_modules
+#10 DONE 0.1s
+
+#11 [runtime 4/5] COPY --chown=node:node package.json ./
+#11 DONE 0.1s
+
+#12 [runtime 5/5] COPY --chown=node:node src ./src
+#12 DONE 0.1s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.2s done
+#13 exporting manifest sha256:b400e9719163c169db0ad718fcab09e43d0ae327f26d8ad6c7bd2c5ae303d869 0.0s done
+#13 exporting config sha256:4a8efc8f7fef0ec109d6c8bc4e202e248a74ce0c97c75f64d377de2e0294e641 0.0s done
+#13 exporting attestation manifest sha256:d35f436c504f78e6561be0c4afd97c8108887bc7c733ddffb7a5fa3470b3b61a 0.0s done
+#13 exporting manifest list sha256:50e4d132ee7f4401f58e665aeeaef2020900b7f4694f3fbf6c7a153878db0d96 done
+#13 naming to docker.io/library/prova-primeiro-bimestre-devops-api:latest done
+#13 unpacking to docker.io/library/prova-primeiro-bimestre-devops-api:latest 0.1s done
+#13 DONE 0.4s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image prova-primeiro-bimestre-devops-api Built 

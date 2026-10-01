@@ -1,0 +1,23 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+coverage/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+backend.hcl
+crash.log
+crash.*.log
+*.pem
+*.key
+.keys/
+.DS_Store
+Thumbs.db
+# Versionar app/package-lock.json e os dois .terraform.lock.hcl.
+__pycache__/
+*.pyc

@@ -1,0 +1,5 @@
+ id |          cliente          |    data    |  status  
+----+---------------------------+------------+----------
+  2 | Evidencia de persistencia | 2026-10-01 | pendente
+(1 row)
+

@@ -1,0 +1,12 @@
+output "ec2_public_ip" { value = module.ec2.public_ip }
+output "ec2_instance_id" { value = module.ec2.instance_id }
+output "rds_endpoint" { value = module.rds.endpoint }
+output "rds_address" { value = module.rds.address }
+output "db_name" { value = module.rds.db_name }
+output "db_username" { value = module.rds.username }
+output "api_url" { value = "http://${module.ec2.public_ip}:3000" }
+output "health_url" { value = "http://${module.ec2.public_ip}:3000/health" }
+output "vpc_id" { value = module.vpc.vpc_id }
+output "private_subnet_ids" { value = module.vpc.private_subnet_ids }
+output "ec2_security_group_id" { value = module.security_group.ec2_sg_id }
+output "rds_security_group_id" { value = module.security_group.rds_sg_id }

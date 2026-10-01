@@ -1,0 +1,9 @@
+{
+  "name": "technova-api-reservas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API de reservas com persistência PostgreSQL",
+  "engines": { "node": ">=22 <23" },
+  "scripts": { "start": "node src/index.js", "check": "node --check src/index.js" },
+  "dependencies": { "express": "5.1.0", "pg": "8.16.3" }
+}

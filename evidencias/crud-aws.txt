@@ -1,0 +1,15 @@
+OK GET /health -> 200
+OK POST /reservas -> 400
+OK POST /reservas -> 400
+OK GET /reservas/abc -> 400
+OK GET /nao-existe -> 404
+OK POST /reservas -> 201
+OK GET /reservas/1 -> 200
+OK GET /reservas -> 200
+OK PUT /reservas/1 -> 200
+OK GET /reservas/1 -> 200
+OK DELETE /reservas/1 -> 204
+OK GET /reservas/1 -> 404
+OK PUT /reservas/1 -> 404
+OK DELETE /reservas/1 -> 404
+CRUD validado; registro de teste removido.

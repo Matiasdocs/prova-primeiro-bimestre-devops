@@ -1,0 +1,148 @@
+Acquiring state lock. This may take a few moments...
+[0m[1mmodule.vpc.data.aws_availability_zones.available: Reading...[0m[0m
+[0m[1mmodule.rds.aws_db_parameter_group.this: Refreshing state... [id=technova-reservas-20261001021148105200000001][0m
+[0m[1mmodule.vpc.aws_vpc.this: Refreshing state... [id=vpc-09d9b00ff7028dc86][0m
+[0m[1mmodule.vpc.data.aws_availability_zones.available: Read complete after 1s [id=us-east-1][0m
+[0m[1mmodule.vpc.aws_internet_gateway.this: Refreshing state... [id=igw-029730c9460970c79][0m
+[0m[1mmodule.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-0536813163d1c6387][0m
+[0m[1mmodule.security_group.aws_security_group.ec2: Refreshing state... [id=sg-0f571bea52778e95b][0m
+[0m[1mmodule.security_group.aws_security_group.rds: Refreshing state... [id=sg-0db795302bc0c20c0][0m
+[0m[1mmodule.vpc.aws_route_table.private: Refreshing state... [id=rtb-029b6f8562627a7af][0m
+[0m[1mmodule.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-08234c462c0e3ef34][0m
+[0m[1mmodule.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-07008ac06964ff888][0m
+[0m[1mmodule.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-03ecc7b1ce71361d6][0m
+[0m[1mmodule.security_group.aws_vpc_security_group_egress_rule.downloads["http"]: Refreshing state... [id=sgr-07e46c9c6bb80172d][0m
+[0m[1mmodule.security_group.aws_vpc_security_group_ingress_rule.ec2["api"]: Refreshing state... [id=sgr-0fdb996d93b7f6d55][0m
+[0m[1mmodule.security_group.aws_vpc_security_group_ingress_rule.ec2["ssh"]: Refreshing state... [id=sgr-0d3b79d86e58e0e12][0m
+[0m[1mmodule.security_group.aws_vpc_security_group_egress_rule.downloads["https"]: Refreshing state... [id=sgr-04143272a036a30c1][0m
+[0m[1mmodule.security_group.aws_vpc_security_group_egress_rule.postgres: Refreshing state... [id=sgr-0732a05fe561b11dc][0m
+[0m[1mmodule.security_group.aws_vpc_security_group_ingress_rule.postgres: Refreshing state... [id=sgr-06c193efacecaeaf6][0m
+[0m[1mmodule.vpc.aws_route_table.public: Refreshing state... [id=rtb-0f2d4d5a5cb4e1883][0m
+[0m[1mmodule.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-0189184fc4646b01c][0m
+[0m[1mmodule.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-03c6b30eb5d41ba23][0m
+[0m[1mmodule.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0f95921cc6c7ae233][0m
+[0m[1mmodule.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0e829c4a43fb944a1][0m
+[0m[1mmodule.ec2.aws_key_pair.this: Refreshing state... [id=technova-reservas-20261001021414826400000005][0m
+[0m[1mmodule.ec2.data.aws_ami.al2023: Reading...[0m[0m
+[0m[1mmodule.ec2.data.aws_ami.al2023: Read complete after 1s [id=ami-03c3da4cfa8e8943a][0m
+[0m[1mmodule.ec2.aws_instance.this: Refreshing state... [id=i-0699004a4e132c41d][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.rds.aws_db_instance.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_db_instance" "this" {
+      [32m+[0m[0m address                               = (known after apply)
+      [32m+[0m[0m allocated_storage                     = 20
+      [32m+[0m[0m apply_immediately                     = true
+      [32m+[0m[0m arn                                   = (known after apply)
+      [32m+[0m[0m auto_minor_version_upgrade            = true
+      [32m+[0m[0m availability_zone                     = (known after apply)
+      [32m+[0m[0m backup_retention_period               = 0
+      [32m+[0m[0m backup_target                         = (known after apply)
+      [32m+[0m[0m backup_window                         = (known after apply)
+      [32m+[0m[0m ca_cert_identifier                    = (known after apply)
+      [32m+[0m[0m character_set_name                    = (known after apply)
+      [32m+[0m[0m copy_tags_to_snapshot                 = true
+      [32m+[0m[0m database_insights_mode                = (known after apply)
+      [32m+[0m[0m db_name                               = "reservas"
+      [32m+[0m[0m db_subnet_group_name                  = "technova-reservas-private"
+      [32m+[0m[0m dedicated_log_volume                  = false
+      [32m+[0m[0m delete_automated_backups              = true
+      [32m+[0m[0m deletion_protection                   = false
+      [32m+[0m[0m domain_fqdn                           = (known after apply)
+      [32m+[0m[0m endpoint                              = (known after apply)
+      [32m+[0m[0m engine                                = "postgres"
+      [32m+[0m[0m engine_lifecycle_support              = (known after apply)
+      [32m+[0m[0m engine_version                        = "16"
+      [32m+[0m[0m engine_version_actual                 = (known after apply)
+      [32m+[0m[0m hosted_zone_id                        = (known after apply)
+      [32m+[0m[0m id                                    = (known after apply)
+      [32m+[0m[0m identifier                            = "technova-reservas"
+      [32m+[0m[0m identifier_prefix                     = (known after apply)
+      [32m+[0m[0m instance_class                        = "db.t3.micro"
+      [32m+[0m[0m iops                                  = (known after apply)
+      [32m+[0m[0m kms_key_id                            = (known after apply)
+      [32m+[0m[0m latest_restorable_time                = (known after apply)
+      [32m+[0m[0m license_model                         = (known after apply)
+      [32m+[0m[0m listener_endpoint                     = (known after apply)
+      [32m+[0m[0m maintenance_window                    = (known after apply)
+      [32m+[0m[0m master_user_secret                    = (known after apply)
+      [32m+[0m[0m master_user_secret_kms_key_id         = (known after apply)
+      [32m+[0m[0m monitoring_interval                   = 0
+      [32m+[0m[0m monitoring_role_arn                   = (known after apply)
+      [32m+[0m[0m multi_az                              = false
+      [32m+[0m[0m nchar_character_set_name              = (known after apply)
+      [32m+[0m[0m network_type                          = (known after apply)
+      [32m+[0m[0m option_group_name                     = (known after apply)
+      [32m+[0m[0m parameter_group_name                  = "technova-reservas-20261001021148105200000001"
+      [32m+[0m[0m password                              = (sensitive value)
+      [32m+[0m[0m performance_insights_enabled          = false
+      [32m+[0m[0m performance_insights_kms_key_id       = (known after apply)
+      [32m+[0m[0m performance_insights_retention_period = (known after apply)
+      [32m+[0m[0m port                                  = 5432
+      [32m+[0m[0m publicly_accessible                   = false
+      [32m+[0m[0m replica_mode                          = (known after apply)
+      [32m+[0m[0m replicas                              = (known after apply)
+      [32m+[0m[0m resource_id                           = (known after apply)
+      [32m+[0m[0m skip_final_snapshot                   = true
+      [32m+[0m[0m snapshot_identifier                   = (known after apply)
+      [32m+[0m[0m status                                = (known after apply)
+      [32m+[0m[0m storage_encrypted                     = true
+      [32m+[0m[0m storage_throughput                    = (known after apply)
+      [32m+[0m[0m storage_type                          = "gp3"
+      [32m+[0m[0m tags                                  = {
+          [32m+[0m[0m "Name" = "technova-reservas-rds"
+        }
+      [32m+[0m[0m tags_all                              = {
+          [32m+[0m[0m "Environment" = "learner-lab"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "technova-reservas-rds"
+          [32m+[0m[0m "Project"     = "technova-reservas"
+        }
+      [32m+[0m[0m timezone                              = (known after apply)
+      [32m+[0m[0m username                              = "reservas_app"
+      [32m+[0m[0m vpc_security_group_ids                = [
+          [32m+[0m[0m "sg-0db795302bc0c20c0",
+        ]
+    }
+
+[1m  # module.rds.aws_db_subnet_group.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_db_subnet_group" "this" {
+      [32m+[0m[0m arn                     = (known after apply)
+      [32m+[0m[0m description             = "Managed by Terraform"
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m name                    = "technova-reservas-private"
+      [32m+[0m[0m name_prefix             = (known after apply)
+      [32m+[0m[0m subnet_ids              = [
+          [32m+[0m[0m "subnet-07008ac06964ff888",
+          [32m+[0m[0m "subnet-08234c462c0e3ef34",
+        ]
+      [32m+[0m[0m supported_network_types = (known after apply)
+      [32m+[0m[0m tags                    = {
+          [32m+[0m[0m "Name" = "technova-reservas-db-subnets"
+        }
+      [32m+[0m[0m tags_all                = {
+          [32m+[0m[0m "Environment" = "learner-lab"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "technova-reservas-db-subnets"
+          [32m+[0m[0m "Project"     = "technova-reservas"
+        }
+      [32m+[0m[0m vpc_id                  = (known after apply)
+    }
+
+[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m rds_address           = (known after apply)
+  [32m+[0m[0m rds_endpoint          = (known after apply)
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: infra.tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "infra.tfplan"

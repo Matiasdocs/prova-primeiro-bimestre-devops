@@ -1,0 +1,15 @@
+api_url = "http://3.89.149.210:3000"
+db_name = "reservas"
+db_username = "reservas_app"
+ec2_instance_id = "i-0699004a4e132c41d"
+ec2_public_ip = "3.89.149.210"
+ec2_security_group_id = "sg-0f571bea52778e95b"
+health_url = "http://3.89.149.210:3000/health"
+private_subnet_ids = [
+  "subnet-08234c462c0e3ef34",
+  "subnet-07008ac06964ff888",
+]
+rds_address = "technova-reservas.culbn1fn6p44.us-east-1.rds.amazonaws.com"
+rds_endpoint = "technova-reservas.culbn1fn6p44.us-east-1.rds.amazonaws.com:5432"
+rds_security_group_id = "sg-0db795302bc0c20c0"
+vpc_id = "vpc-09d9b00ff7028dc86"

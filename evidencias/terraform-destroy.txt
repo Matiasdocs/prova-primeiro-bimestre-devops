@@ -1,0 +1,889 @@
+Acquiring state lock. This may take a few moments...
+module.vpc.data.aws_availability_zones.available: Reading...
+module.vpc.aws_vpc.this: Refreshing state... [id=vpc-09d9b00ff7028dc86]
+module.rds.aws_db_parameter_group.this: Refreshing state... [id=technova-reservas-20261001021148105200000001]
+module.vpc.data.aws_availability_zones.available: Read complete after 1s [id=us-east-1]
+module.security_group.aws_security_group.rds: Refreshing state... [id=sg-0db795302bc0c20c0]
+module.vpc.aws_route_table.private: Refreshing state... [id=rtb-029b6f8562627a7af]
+module.vpc.aws_internet_gateway.this: Refreshing state... [id=igw-029730c9460970c79]
+module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-03ecc7b1ce71361d6]
+module.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-08234c462c0e3ef34]
+module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-0536813163d1c6387]
+module.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-07008ac06964ff888]
+module.security_group.aws_security_group.ec2: Refreshing state... [id=sg-0f571bea52778e95b]
+module.security_group.aws_vpc_security_group_ingress_rule.ec2["api"]: Refreshing state... [id=sgr-0fdb996d93b7f6d55]
+module.security_group.aws_vpc_security_group_egress_rule.postgres: Refreshing state... [id=sgr-0732a05fe561b11dc]
+module.security_group.aws_vpc_security_group_ingress_rule.ec2["ssh"]: Refreshing state... [id=sgr-0d3b79d86e58e0e12]
+module.security_group.aws_vpc_security_group_ingress_rule.postgres: Refreshing state... [id=sgr-06c193efacecaeaf6]
+module.security_group.aws_vpc_security_group_egress_rule.downloads["https"]: Refreshing state... [id=sgr-04143272a036a30c1]
+module.security_group.aws_vpc_security_group_egress_rule.downloads["http"]: Refreshing state... [id=sgr-07e46c9c6bb80172d]
+module.vpc.aws_route_table.public: Refreshing state... [id=rtb-0f2d4d5a5cb4e1883]
+module.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-0189184fc4646b01c]
+module.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-03c6b30eb5d41ba23]
+module.rds.aws_db_subnet_group.this: Refreshing state... [id=technova-reservas-private]
+module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0f95921cc6c7ae233]
+module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0e829c4a43fb944a1]
+module.ec2.aws_key_pair.this: Refreshing state... [id=technova-reservas-20261001021414826400000005]
+module.ec2.data.aws_ami.al2023: Reading...
+module.rds.aws_db_instance.this: Refreshing state... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM]
+module.ec2.data.aws_ami.al2023: Read complete after 1s [id=ami-03c3da4cfa8e8943a]
+module.ec2.aws_instance.this: Refreshing state... [id=i-0699004a4e132c41d]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # module.ec2.aws_instance.this will be destroyed
+  - resource "aws_instance" "this" {
+      - ami                                  = "ami-03c3da4cfa8e8943a" -> null
+      - arn                                  = "arn:aws:ec2:us-east-1:476006537085:instance/i-0699004a4e132c41d" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "us-east-1a" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - iam_instance_profile                 = "LabInstanceProfile" -> null
+      - id                                   = "i-0699004a4e132c41d" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "technova-reservas-20261001021414826400000005" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-01efa7aa1c360e752" -> null
+      - private_dns                          = "ip-10-40-0-125.ec2.internal" -> null
+      - private_ip                           = "10.40.0.125" -> null
+      - public_dns                           = "ec2-3-89-149-210.compute-1.amazonaws.com" -> null
+      - public_ip                            = "3.89.149.210" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0536813163d1c6387" -> null
+      - tags                                 = {
+          - "Name" = "technova-reservas-ec2"
+        } -> null
+      - tags_all                             = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-ec2"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data                            = "fef8b9e2b162d240ce2f304cf8e4e874f889a6f0" -> null
+      - user_data_replace_on_change          = true -> null
+      - vpc_security_group_ids               = [
+          - "sg-0f571bea52778e95b",
+        ] -> null
+        # (6 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:476006537085:key/891928b1-5b01-483c-b447-81defbe4def2" -> null
+          - tags                  = {
+              - "Environment" = "learner-lab"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "technova-reservas-root"
+              - "Project"     = "technova-reservas"
+            } -> null
+          - tags_all              = {
+              - "Environment" = "learner-lab"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "technova-reservas-root"
+              - "Project"     = "technova-reservas"
+            } -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0f3ba6d1e28f0879f" -> null
+          - volume_size           = 12 -> null
+          - volume_type           = "gp3" -> null
+        }
+    }
+
+  # module.ec2.aws_key_pair.this will be destroyed
+  - resource "aws_key_pair" "this" {
+      - arn             = "arn:aws:ec2:us-east-1:476006537085:key-pair/technova-reservas-20261001021414826400000005" -> null
+      - fingerprint     = "WsQWTFk/xE+PM+niKEL2wBJOj7g9L51ZAow+pb84XOM=" -> null
+      - id              = "technova-reservas-20261001021414826400000005" -> null
+      - key_name        = "technova-reservas-20261001021414826400000005" -> null
+      - key_name_prefix = "technova-reservas-" -> null
+      - key_pair_id     = "key-0d3db273b7d241b84" -> null
+      - key_type        = "ed25519" -> null
+      - public_key      = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKabXudIBzVIpsoQuZH7sWUu8dEp5rgawqwgOQ9B5UrH devops-prova-6325053" -> null
+      - tags            = {
+          - "Name" = "technova-reservas-ssh"
+        } -> null
+      - tags_all        = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-ssh"
+          - "Project"     = "technova-reservas"
+        } -> null
+    }
+
+  # module.rds.aws_db_instance.this will be destroyed
+  - resource "aws_db_instance" "this" {
+      - address                               = "technova-reservas.culbn1fn6p44.us-east-1.rds.amazonaws.com" -> null
+      - allocated_storage                     = 20 -> null
+      - apply_immediately                     = true -> null
+      - arn                                   = "arn:aws:rds:us-east-1:476006537085:db:technova-reservas" -> null
+      - auto_minor_version_upgrade            = true -> null
+      - availability_zone                     = "us-east-1b" -> null
+      - backup_retention_period               = 0 -> null
+      - backup_target                         = "region" -> null
+      - backup_window                         = "06:49-07:19" -> null
+      - ca_cert_identifier                    = "rds-ca-rsa2048-g1" -> null
+      - copy_tags_to_snapshot                 = true -> null
+      - customer_owned_ip_enabled             = false -> null
+      - database_insights_mode                = "standard" -> null
+      - db_name                               = "reservas" -> null
+      - db_subnet_group_name                  = "technova-reservas-private" -> null
+      - dedicated_log_volume                  = false -> null
+      - delete_automated_backups              = true -> null
+      - deletion_protection                   = false -> null
+      - domain_dns_ips                        = [] -> null
+      - enabled_cloudwatch_logs_exports       = [] -> null
+      - endpoint                              = "technova-reservas.culbn1fn6p44.us-east-1.rds.amazonaws.com:5432" -> null
+      - engine                                = "postgres" -> null
+      - engine_lifecycle_support              = "open-source-rds-extended-support" -> null
+      - engine_version                        = "16" -> null
+      - engine_version_actual                 = "16.13" -> null
+      - hosted_zone_id                        = "Z2R2ITUGPM61AM" -> null
+      - iam_database_authentication_enabled   = false -> null
+      - id                                    = "db-UIW35XHAIAPZEB55EB5PKBLPWM" -> null
+      - identifier                            = "technova-reservas" -> null
+      - instance_class                        = "db.t3.micro" -> null
+      - iops                                  = 3000 -> null
+      - kms_key_id                            = "arn:aws:kms:us-east-1:476006537085:key/ad5ad391-44c8-44f2-bcbf-33920d212913" -> null
+      - license_model                         = "postgresql-license" -> null
+      - listener_endpoint                     = [] -> null
+      - maintenance_window                    = "fri:08:42-fri:09:12" -> null
+      - master_user_secret                    = [] -> null
+      - max_allocated_storage                 = 0 -> null
+      - monitoring_interval                   = 0 -> null
+      - multi_az                              = false -> null
+      - network_type                          = "IPV4" -> null
+      - option_group_name                     = "default:postgres-16" -> null
+      - parameter_group_name                  = "technova-reservas-20261001021148105200000001" -> null
+      - password                              = (sensitive value) -> null
+      - performance_insights_enabled          = false -> null
+      - performance_insights_retention_period = 0 -> null
+      - port                                  = 5432 -> null
+      - publicly_accessible                   = false -> null
+      - replicas                              = [] -> null
+      - resource_id                           = "db-UIW35XHAIAPZEB55EB5PKBLPWM" -> null
+      - skip_final_snapshot                   = true -> null
+      - status                                = "available" -> null
+      - storage_encrypted                     = true -> null
+      - storage_throughput                    = 125 -> null
+      - storage_type                          = "gp3" -> null
+      - tags                                  = {
+          - "Name" = "technova-reservas-rds"
+        } -> null
+      - tags_all                              = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-rds"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - username                              = "reservas_app" -> null
+      - vpc_security_group_ids                = [
+          - "sg-0db795302bc0c20c0",
+        ] -> null
+        # (15 unchanged attributes hidden)
+    }
+
+  # module.rds.aws_db_parameter_group.this will be destroyed
+  - resource "aws_db_parameter_group" "this" {
+      - arn          = "arn:aws:rds:us-east-1:476006537085:pg:technova-reservas-20261001021148105200000001" -> null
+      - description  = "Managed by Terraform" -> null
+      - family       = "postgres16" -> null
+      - id           = "technova-reservas-20261001021148105200000001" -> null
+      - name         = "technova-reservas-20261001021148105200000001" -> null
+      - name_prefix  = "technova-reservas-" -> null
+      - skip_destroy = false -> null
+      - tags         = {
+          - "Name" = "technova-reservas-postgres16"
+        } -> null
+      - tags_all     = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-postgres16"
+          - "Project"     = "technova-reservas"
+        } -> null
+
+      - parameter {
+          - apply_method = "pending-reboot" -> null
+          - name         = "rds.force_ssl" -> null
+          - value        = "1" -> null
+        }
+    }
+
+  # module.rds.aws_db_subnet_group.this will be destroyed
+  - resource "aws_db_subnet_group" "this" {
+      - arn                     = "arn:aws:rds:us-east-1:476006537085:subgrp:technova-reservas-private" -> null
+      - description             = "Managed by Terraform" -> null
+      - id                      = "technova-reservas-private" -> null
+      - name                    = "technova-reservas-private" -> null
+      - subnet_ids              = [
+          - "subnet-07008ac06964ff888",
+          - "subnet-08234c462c0e3ef34",
+        ] -> null
+      - supported_network_types = [
+          - "IPV4",
+        ] -> null
+      - tags                    = {
+          - "Name" = "technova-reservas-db-subnets"
+        } -> null
+      - tags_all                = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-db-subnets"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                  = "vpc-09d9b00ff7028dc86" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.security_group.aws_security_group.ec2 will be destroyed
+  - resource "aws_security_group" "ec2" {
+      - arn                    = "arn:aws:ec2:us-east-1:476006537085:security-group/sg-0f571bea52778e95b" -> null
+      - description            = "SSH e API apenas a partir do IPv4 do aluno" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 443
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 443
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = []
+              - from_port        = 5432
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = [
+                  - "sg-0db795302bc0c20c0",
+                ]
+              - self             = false
+              - to_port          = 5432
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-0f571bea52778e95b" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "179.156.149.172/32",
+                ]
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "179.156.149.172/32",
+                ]
+              - from_port        = 3000
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 3000
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "technova-reservas-ec2-20261001021401782900000003" -> null
+      - name_prefix            = "technova-reservas-ec2-" -> null
+      - owner_id               = "476006537085" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "technova-reservas-ec2-sg"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-ec2-sg"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                 = "vpc-09d9b00ff7028dc86" -> null
+    }
+
+  # module.security_group.aws_security_group.rds will be destroyed
+  - resource "aws_security_group" "rds" {
+      - arn                    = "arn:aws:ec2:us-east-1:476006537085:security-group/sg-0db795302bc0c20c0" -> null
+      - description            = "PostgreSQL apenas a partir do SG da EC2" -> null
+      - egress                 = [] -> null
+      - id                     = "sg-0db795302bc0c20c0" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = []
+              - from_port        = 5432
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = [
+                  - "sg-0f571bea52778e95b",
+                ]
+              - self             = false
+              - to_port          = 5432
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "technova-reservas-rds-20261001021401782800000002" -> null
+      - name_prefix            = "technova-reservas-rds-" -> null
+      - owner_id               = "476006537085" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "technova-reservas-rds-sg"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-rds-sg"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                 = "vpc-09d9b00ff7028dc86" -> null
+    }
+
+  # module.security_group.aws_vpc_security_group_egress_rule.downloads["http"] will be destroyed
+  - resource "aws_vpc_security_group_egress_rule" "downloads" {
+      - arn                    = "arn:aws:ec2:us-east-1:476006537085:security-group-rule/sgr-07e46c9c6bb80172d" -> null
+      - cidr_ipv4              = "0.0.0.0/0" -> null
+      - from_port              = 80 -> null
+      - id                     = "sgr-07e46c9c6bb80172d" -> null
+      - ip_protocol            = "tcp" -> null
+      - security_group_id      = "sg-0f571bea52778e95b" -> null
+      - security_group_rule_id = "sgr-07e46c9c6bb80172d" -> null
+      - tags                   = {
+          - "Name" = "technova-reservas-http-out"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-http-out"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - to_port                = 80 -> null
+    }
+
+  # module.security_group.aws_vpc_security_group_egress_rule.downloads["https"] will be destroyed
+  - resource "aws_vpc_security_group_egress_rule" "downloads" {
+      - arn                    = "arn:aws:ec2:us-east-1:476006537085:security-group-rule/sgr-04143272a036a30c1" -> null
+      - cidr_ipv4              = "0.0.0.0/0" -> null
+      - from_port              = 443 -> null
+      - id                     = "sgr-04143272a036a30c1" -> null
+      - ip_protocol            = "tcp" -> null
+      - security_group_id      = "sg-0f571bea52778e95b" -> null
+      - security_group_rule_id = "sgr-04143272a036a30c1" -> null
+      - tags                   = {
+          - "Name" = "technova-reservas-https-out"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-https-out"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - to_port                = 443 -> null
+    }
+
+  # module.security_group.aws_vpc_security_group_egress_rule.postgres will be destroyed
+  - resource "aws_vpc_security_group_egress_rule" "postgres" {
+      - arn                          = "arn:aws:ec2:us-east-1:476006537085:security-group-rule/sgr-0732a05fe561b11dc" -> null
+      - from_port                    = 5432 -> null
+      - id                           = "sgr-0732a05fe561b11dc" -> null
+      - ip_protocol                  = "tcp" -> null
+      - referenced_security_group_id = "sg-0db795302bc0c20c0" -> null
+      - security_group_id            = "sg-0f571bea52778e95b" -> null
+      - security_group_rule_id       = "sgr-0732a05fe561b11dc" -> null
+      - tags                         = {
+          - "Name" = "technova-reservas-postgres-out"
+        } -> null
+      - tags_all                     = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-postgres-out"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - to_port                      = 5432 -> null
+    }
+
+  # module.security_group.aws_vpc_security_group_ingress_rule.ec2["api"] will be destroyed
+  - resource "aws_vpc_security_group_ingress_rule" "ec2" {
+      - arn                    = "arn:aws:ec2:us-east-1:476006537085:security-group-rule/sgr-0fdb996d93b7f6d55" -> null
+      - cidr_ipv4              = "179.156.149.172/32" -> null
+      - from_port              = 3000 -> null
+      - id                     = "sgr-0fdb996d93b7f6d55" -> null
+      - ip_protocol            = "tcp" -> null
+      - security_group_id      = "sg-0f571bea52778e95b" -> null
+      - security_group_rule_id = "sgr-0fdb996d93b7f6d55" -> null
+      - tags                   = {
+          - "Name" = "technova-reservas-api-in"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-api-in"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - to_port                = 3000 -> null
+    }
+
+  # module.security_group.aws_vpc_security_group_ingress_rule.ec2["ssh"] will be destroyed
+  - resource "aws_vpc_security_group_ingress_rule" "ec2" {
+      - arn                    = "arn:aws:ec2:us-east-1:476006537085:security-group-rule/sgr-0d3b79d86e58e0e12" -> null
+      - cidr_ipv4              = "179.156.149.172/32" -> null
+      - from_port              = 22 -> null
+      - id                     = "sgr-0d3b79d86e58e0e12" -> null
+      - ip_protocol            = "tcp" -> null
+      - security_group_id      = "sg-0f571bea52778e95b" -> null
+      - security_group_rule_id = "sgr-0d3b79d86e58e0e12" -> null
+      - tags                   = {
+          - "Name" = "technova-reservas-ssh-in"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-ssh-in"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - to_port                = 22 -> null
+    }
+
+  # module.security_group.aws_vpc_security_group_ingress_rule.postgres will be destroyed
+  - resource "aws_vpc_security_group_ingress_rule" "postgres" {
+      - arn                          = "arn:aws:ec2:us-east-1:476006537085:security-group-rule/sgr-06c193efacecaeaf6" -> null
+      - from_port                    = 5432 -> null
+      - id                           = "sgr-06c193efacecaeaf6" -> null
+      - ip_protocol                  = "tcp" -> null
+      - referenced_security_group_id = "sg-0f571bea52778e95b" -> null
+      - security_group_id            = "sg-0db795302bc0c20c0" -> null
+      - security_group_rule_id       = "sgr-06c193efacecaeaf6" -> null
+      - tags                         = {
+          - "Name" = "technova-reservas-postgres-in"
+        } -> null
+      - tags_all                     = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-postgres-in"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - to_port                      = 5432 -> null
+    }
+
+  # module.vpc.aws_internet_gateway.this will be destroyed
+  - resource "aws_internet_gateway" "this" {
+      - arn      = "arn:aws:ec2:us-east-1:476006537085:internet-gateway/igw-029730c9460970c79" -> null
+      - id       = "igw-029730c9460970c79" -> null
+      - owner_id = "476006537085" -> null
+      - tags     = {
+          - "Name" = "technova-reservas-igw"
+        } -> null
+      - tags_all = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-igw"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id   = "vpc-09d9b00ff7028dc86" -> null
+    }
+
+  # module.vpc.aws_route_table.private will be destroyed
+  - resource "aws_route_table" "private" {
+      - arn              = "arn:aws:ec2:us-east-1:476006537085:route-table/rtb-029b6f8562627a7af" -> null
+      - id               = "rtb-029b6f8562627a7af" -> null
+      - owner_id         = "476006537085" -> null
+      - propagating_vgws = [] -> null
+      - route            = [] -> null
+      - tags             = {
+          - "Name" = "technova-reservas-private-rt"
+        } -> null
+      - tags_all         = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-private-rt"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id           = "vpc-09d9b00ff7028dc86" -> null
+    }
+
+  # module.vpc.aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:us-east-1:476006537085:route-table/rtb-0f2d4d5a5cb4e1883" -> null
+      - id               = "rtb-0f2d4d5a5cb4e1883" -> null
+      - owner_id         = "476006537085" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-029730c9460970c79"
+                # (11 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "technova-reservas-public-rt"
+        } -> null
+      - tags_all         = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-public-rt"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id           = "vpc-09d9b00ff7028dc86" -> null
+    }
+
+  # module.vpc.aws_route_table_association.private[0] will be destroyed
+  - resource "aws_route_table_association" "private" {
+      - id             = "rtbassoc-0189184fc4646b01c" -> null
+      - route_table_id = "rtb-029b6f8562627a7af" -> null
+      - subnet_id      = "subnet-08234c462c0e3ef34" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.private[1] will be destroyed
+  - resource "aws_route_table_association" "private" {
+      - id             = "rtbassoc-03c6b30eb5d41ba23" -> null
+      - route_table_id = "rtb-029b6f8562627a7af" -> null
+      - subnet_id      = "subnet-07008ac06964ff888" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.public[0] will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-0e829c4a43fb944a1" -> null
+      - route_table_id = "rtb-0f2d4d5a5cb4e1883" -> null
+      - subnet_id      = "subnet-0536813163d1c6387" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.public[1] will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-0f95921cc6c7ae233" -> null
+      - route_table_id = "rtb-0f2d4d5a5cb4e1883" -> null
+      - subnet_id      = "subnet-03ecc7b1ce71361d6" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_subnet.private[0] will be destroyed
+  - resource "aws_subnet" "private" {
+      - arn                                            = "arn:aws:ec2:us-east-1:476006537085:subnet/subnet-08234c462c0e3ef34" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1a" -> null
+      - availability_zone_id                           = "use1-az6" -> null
+      - cidr_block                                     = "10.40.10.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-08234c462c0e3ef34" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "476006537085" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name" = "technova-reservas-private-1"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-private-1"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                                         = "vpc-09d9b00ff7028dc86" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.private[1] will be destroyed
+  - resource "aws_subnet" "private" {
+      - arn                                            = "arn:aws:ec2:us-east-1:476006537085:subnet/subnet-07008ac06964ff888" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1b" -> null
+      - availability_zone_id                           = "use1-az1" -> null
+      - cidr_block                                     = "10.40.11.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-07008ac06964ff888" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "476006537085" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name" = "technova-reservas-private-2"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-private-2"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                                         = "vpc-09d9b00ff7028dc86" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.public[0] will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:us-east-1:476006537085:subnet/subnet-0536813163d1c6387" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1a" -> null
+      - availability_zone_id                           = "use1-az6" -> null
+      - cidr_block                                     = "10.40.0.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0536813163d1c6387" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "476006537085" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name" = "technova-reservas-public-1"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-public-1"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                                         = "vpc-09d9b00ff7028dc86" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.public[1] will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:us-east-1:476006537085:subnet/subnet-03ecc7b1ce71361d6" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1b" -> null
+      - availability_zone_id                           = "use1-az1" -> null
+      - cidr_block                                     = "10.40.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-03ecc7b1ce71361d6" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "476006537085" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name" = "technova-reservas-public-2"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-public-2"
+          - "Project"     = "technova-reservas"
+        } -> null
+      - vpc_id                                         = "vpc-09d9b00ff7028dc86" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_vpc.this will be destroyed
+  - resource "aws_vpc" "this" {
+      - arn                                  = "arn:aws:ec2:us-east-1:476006537085:vpc/vpc-09d9b00ff7028dc86" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.40.0.0/16" -> null
+      - default_network_acl_id               = "acl-0210f2fa3d48a75a9" -> null
+      - default_route_table_id               = "rtb-00bfa8169ad45f31f" -> null
+      - default_security_group_id            = "sg-0b77afe5cfdd673e3" -> null
+      - dhcp_options_id                      = "dopt-001b738790437cf94" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-09d9b00ff7028dc86" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-00bfa8169ad45f31f" -> null
+      - owner_id                             = "476006537085" -> null
+      - tags                                 = {
+          - "Name" = "technova-reservas-vpc"
+        } -> null
+      - tags_all                             = {
+          - "Environment" = "learner-lab"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "technova-reservas-vpc"
+          - "Project"     = "technova-reservas"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 25 to destroy.
+
+Changes to Outputs:
+  - api_url               = "http://3.89.149.210:3000" -> null
+  - db_name               = "reservas" -> null
+  - db_username           = "reservas_app" -> null
+  - ec2_instance_id       = "i-0699004a4e132c41d" -> null
+  - ec2_public_ip         = "3.89.149.210" -> null
+  - ec2_security_group_id = "sg-0f571bea52778e95b" -> null
+  - health_url            = "http://3.89.149.210:3000/health" -> null
+  - private_subnet_ids    = [
+      - "subnet-08234c462c0e3ef34",
+      - "subnet-07008ac06964ff888",
+    ] -> null
+  - rds_address           = "technova-reservas.culbn1fn6p44.us-east-1.rds.amazonaws.com" -> null
+  - rds_endpoint          = "technova-reservas.culbn1fn6p44.us-east-1.rds.amazonaws.com:5432" -> null
+  - rds_security_group_id = "sg-0db795302bc0c20c0" -> null
+  - vpc_id                = "vpc-09d9b00ff7028dc86" -> null
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: 
+module.ec2.aws_instance.this: Destroying... [id=i-0699004a4e132c41d]
+module.rds.aws_db_instance.this: Destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM]
+module.ec2.aws_instance.this: Still destroying... [id=i-0699004a4e132c41d, 10s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 10s elapsed]
+module.ec2.aws_instance.this: Still destroying... [id=i-0699004a4e132c41d, 20s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 20s elapsed]
+module.ec2.aws_instance.this: Still destroying... [id=i-0699004a4e132c41d, 30s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 30s elapsed]
+module.ec2.aws_instance.this: Destruction complete after 31s
+module.ec2.aws_key_pair.this: Destroying... [id=technova-reservas-20261001021414826400000005]
+module.ec2.aws_key_pair.this: Destruction complete after 1s
+module.vpc.aws_route_table_association.public[1]: Destroying... [id=rtbassoc-0f95921cc6c7ae233]
+module.vpc.aws_route_table_association.public[0]: Destroying... [id=rtbassoc-0e829c4a43fb944a1]
+module.vpc.aws_route_table_association.private[0]: Destroying... [id=rtbassoc-0189184fc4646b01c]
+module.vpc.aws_route_table_association.private[1]: Destroying... [id=rtbassoc-03c6b30eb5d41ba23]
+module.security_group.aws_vpc_security_group_ingress_rule.ec2["api"]: Destroying... [id=sgr-0fdb996d93b7f6d55]
+module.security_group.aws_vpc_security_group_ingress_rule.postgres: Destroying... [id=sgr-06c193efacecaeaf6]
+module.security_group.aws_vpc_security_group_egress_rule.postgres: Destroying... [id=sgr-0732a05fe561b11dc]
+module.security_group.aws_vpc_security_group_ingress_rule.ec2["ssh"]: Destroying... [id=sgr-0d3b79d86e58e0e12]
+module.security_group.aws_vpc_security_group_egress_rule.downloads["https"]: Destroying... [id=sgr-04143272a036a30c1]
+module.vpc.aws_route_table_association.public[0]: Destruction complete after 0s
+module.security_group.aws_vpc_security_group_egress_rule.downloads["http"]: Destroying... [id=sgr-07e46c9c6bb80172d]
+module.vpc.aws_route_table_association.public[1]: Destruction complete after 0s
+module.vpc.aws_subnet.public[0]: Destroying... [id=subnet-0536813163d1c6387]
+module.security_group.aws_vpc_security_group_ingress_rule.ec2["api"]: Destruction complete after 0s
+module.vpc.aws_route_table.public: Destroying... [id=rtb-0f2d4d5a5cb4e1883]
+module.security_group.aws_vpc_security_group_egress_rule.postgres: Destruction complete after 0s
+module.vpc.aws_subnet.public[1]: Destroying... [id=subnet-03ecc7b1ce71361d6]
+module.security_group.aws_vpc_security_group_ingress_rule.postgres: Destruction complete after 0s
+module.security_group.aws_vpc_security_group_ingress_rule.ec2["ssh"]: Destruction complete after 1s
+module.vpc.aws_route_table_association.private[0]: Destruction complete after 1s
+module.vpc.aws_route_table_association.private[1]: Destruction complete after 1s
+module.vpc.aws_route_table.private: Destroying... [id=rtb-029b6f8562627a7af]
+module.security_group.aws_vpc_security_group_egress_rule.downloads["https"]: Destruction complete after 1s
+module.security_group.aws_vpc_security_group_egress_rule.downloads["http"]: Destruction complete after 1s
+module.security_group.aws_security_group.ec2: Destroying... [id=sg-0f571bea52778e95b]
+module.vpc.aws_subnet.public[0]: Destruction complete after 1s
+module.vpc.aws_subnet.public[1]: Destruction complete after 1s
+module.vpc.aws_route_table.public: Destruction complete after 1s
+module.vpc.aws_internet_gateway.this: Destroying... [id=igw-029730c9460970c79]
+module.vpc.aws_route_table.private: Destruction complete after 1s
+module.security_group.aws_security_group.ec2: Destruction complete after 1s
+module.vpc.aws_internet_gateway.this: Destruction complete after 1s
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 40s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 50s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 1m0s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 1m10s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 1m20s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 1m30s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 1m40s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 1m50s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 2m0s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 2m10s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 2m20s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 2m30s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 2m40s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 2m50s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 3m0s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 3m10s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 3m20s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 3m30s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 3m40s elapsed]
+module.rds.aws_db_instance.this: Still destroying... [id=db-UIW35XHAIAPZEB55EB5PKBLPWM, 3m50s elapsed]
+module.rds.aws_db_instance.this: Destruction complete after 3m56s
+module.rds.aws_db_subnet_group.this: Destroying... [id=technova-reservas-private]
+module.rds.aws_db_parameter_group.this: Destroying... [id=technova-reservas-20261001021148105200000001]
+module.security_group.aws_security_group.rds: Destroying... [id=sg-0db795302bc0c20c0]
+module.rds.aws_db_parameter_group.this: Destruction complete after 0s
+module.rds.aws_db_subnet_group.this: Destruction complete after 1s
+module.vpc.aws_subnet.private[1]: Destroying... [id=subnet-07008ac06964ff888]
+module.vpc.aws_subnet.private[0]: Destroying... [id=subnet-08234c462c0e3ef34]
+module.vpc.aws_subnet.private[1]: Destruction complete after 1s
+module.vpc.aws_subnet.private[0]: Destruction complete after 1s
+module.security_group.aws_security_group.rds: Destruction complete after 2s
+module.vpc.aws_vpc.this: Destroying... [id=vpc-09d9b00ff7028dc86]
+module.vpc.aws_vpc.this: Destruction complete after 1s
+
+Destroy complete! Resources: 25 destroyed.

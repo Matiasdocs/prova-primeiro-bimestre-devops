@@ -1,0 +1,11 @@
+*   7b35d26 (HEAD -> main) merge: integra implementacao da prova de DevOps
+|\  
+| * e120e78 (origin/feat/prova-devops, feat/prova-devops) chore: adiciona scripts de deploy e validacao
+| * 3624152 feat: adiciona infraestrutura AWS modular com Terraform
+| * b1bfd15 chore: registra evidencias da validacao local
+| * 9541cc6 feat: adiciona orquestracao local com Docker Compose
+| * 429b858 feat: adiciona API de reservas com PostgreSQL
+| * 27361aa docs: adiciona roteiro do projeto e identificacao do aluno
+| * 1552bea chore: configura arquivos ignorados pelo Git
+|/  
+* a628495 (origin/main, origin/HEAD) Initial commit

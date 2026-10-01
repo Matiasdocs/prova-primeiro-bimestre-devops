@@ -2,104 +2,75 @@
 
 **Aluno:** Matheus Gabriel Correa Braga Viana  
 **RA:** 6325053  
+**Disciplina:** DevOps — 2026.2  
+**Professor:** Alexandre da Costa Tavares Jr  
 **Data da prova:** 01/10/2026  
-**Ferramenta de IA utilizada:** ChatGPT  
-**Repositório:** https://github.com/Matiasdocs/prova-primeiro-bimestre-devops
-
-> Rascunho estruturado para revisão do aluno. Complete cada resposta em formato dissertativo, com pelo menos dez linhas por questão. Os textos iniciais usam os registros da execução compartilhados no chat; acrescente somente experiências reais e remova esta observação antes da entrega.
+**Ferramentas de IA utilizadas:** ChatGPT (estrutura inicial do projeto e orientação da execução) e Claude (revisão do código, testes e diagnóstico de erros). Também usei o Claude para revisar a redação deste relatório; os fatos e as conclusões vêm da minha própria execução.  
+**Repositório do projeto:** https://github.com/Matiasdocs/prova-primeiro-bimestre-devops
 
 ## Questão 1 — A Jornada Completa (Aulas 01 a 07)
 
-**Pergunta:** Como você conectou Git, Docker, Docker Compose, Terraform, módulos e remote state? Explique a ordem seguida e a relação com as aulas.
+Comecei pela aplicação. Montei a API de Reservas em Node.js/Express, com os campos `id`, `cliente`, `data` e `status`, gravando em PostgreSQL. Em [app/src/index.js](app/src/index.js), as rotas de criação, consulta, atualização e exclusão executam consultas SQL, e o `/health` faz um `SELECT 1` no banco. Fiz nessa ordem porque queria ter uma aplicação funcionando e testável antes de acrescentar qualquer infraestrutura de nuvem.
 
-### Texto inicial
+Na **Aula 01 (Git e Docker)**, usei o controle de versão e a containerização. Trabalhei em uma branch de feature, `feat/prova-devops`, e depois integrei à `main` com o merge `7b35d26`, registrado em [evidencias/git-merges.txt](evidencias/git-merges.txt). O histórico tem commits separados para a API, o Compose, a infraestrutura e os scripts, como `429b858`, `9541cc6`, `3624152` e `e120e78`. Usei branch porque, mesmo trabalhando sozinho, ela me deixou construir e testar sem mexer na `main`, que ficou sempre estável, e o merge deixou o fluxo visível no histórico. Em um projeto com mais gente, a branch também isola o trabalho de cada pessoa, e os conflitos aparecem no merge, onde dá para resolvê-los com revisão. O [app/Dockerfile](app/Dockerfile) separa a instalação de dependências da execução, usa o lockfile do npm e roda o processo como usuário `node`, o que deixou o ambiente da API reproduzível e menos dependente da minha máquina.
 
-Organizei o projeto da API de Reservas em um repositório próprio, com commits separados para a aplicação, o ambiente local, a infraestrutura e os scripts. Utilizei a branch `feat/prova-devops`, integrada à `main` por um commit de merge. A aplicação utiliza Node.js/Express e PostgreSQL para criar, consultar, atualizar e excluir reservas.
+Na **Aula 02 (Docker Compose e IA como copiloto)**, conectei a API ao PostgreSQL local pelo [docker-compose.yml](docker-compose.yml). Os serviços usam a rede bridge `reservas_net`, o banco usa o volume nomeado `postgres_data`, e a API só sobe depois do healthcheck do PostgreSQL, com `depends_on` e `service_healthy`. O ambiente inteiro sobe com `docker compose up -d --build --wait`. Na minha execução o Compose subiu sem nenhum erro, e as evidências [compose-ps.txt](evidencias/compose-ps.txt) e [crud-local.txt](evidencias/crud-local.txt) mostram os serviços saudáveis e os testes HTTP. Validar tudo localmente antes da AWS foi uma decisão consciente: um erro de código descoberto na nuvem custa mais tempo, e o Learner Lab tem sessão limitada.
 
-O ambiente local foi organizado com Docker e Docker Compose. Depois, provisionei a infraestrutura na AWS com Terraform e módulos para VPC, Security Groups, EC2 e RDS. O backend de state foi preparado antes da infraestrutura principal, utilizando S3 e DynamoDB. Após o provisionamento, executei `scripts/deploy.sh` e os testes da API na nuvem.
+A **Aula 03 (Terraform e segurança AWS, IAM)** apareceu na declaração da infraestrutura em HCL, no uso de variáveis, providers e outputs, e na revisão das permissões. A **Aula 04 (VPC, networking e EC2)** foi aplicada na rede própria, nas subnets, nas tabelas de rotas, nos Security Groups e na instância EC2. Os conceitos da **Aula 05 (RDS e remote state)** estão no PostgreSQL gerenciado e no backend S3 com DynamoDB. Criei o backend antes da infraestrutura principal porque o Terraform precisa dele para guardar o state e fazer o lock durante o provisionamento.
 
-Salvei evidências dos testes e das configurações no console AWS. Ao concluir, destruí primeiro os recursos da aplicação e depois o backend, preservando os logs na pasta `evidencias`.
+A **Aula 06 (módulos Terraform)** foi aplicada na separação em `vpc`, `security-group`, `ec2` e `rds`. Em [infra/main.tf](infra/main.tf), o output `module.vpc.vpc_id` alimenta o módulo de segurança, e `module.vpc.private_subnet_ids` junto com `module.security_group.rds_sg_id` alimentam o módulo do RDS. Isso deixa explícitas as dependências entre rede, segurança, computação e banco. Um ponto que precisei entender bem é a separação entre provisionar e entregar a aplicação: o `terraform apply` cria a rede, o RDS e a EC2 com Docker instalado, mas não sobe a API. Quem faz isso é o [scripts/deploy.sh](scripts/deploy.sh), que envia o código por SSH, constrói a imagem na EC2 e inicia o contêiner conectado ao RDS. Até rodar o deploy, a URL da API não responde.
 
-### Desenvolver antes de entregar
-
-- Explique por que testou localmente antes de provisionar na AWS.
-- Relacione a Aula 01 ao Git/Docker, a Aula 02 ao Compose, as Aulas 03 a 06 à infraestrutura e a Aula 07 ao uso crítico de IA.
-- Explique uma ligação concreta entre output e input dos módulos do seu código.
-- Diferencie o que o `terraform apply` prepara do que o script de deploy executa.
-- Transforme estes pontos em parágrafos e confira o mínimo de dez linhas.
+A **Aula 07 (resolução de problemas complexos com IA, decomposição e Spec-Driven)** se relaciona à forma como conduzi o trabalho. Mesmo tendo pedido os arquivos completos logo no início, dividi a execução em etapas verificáveis: validação local, backend, infraestrutura, deploy, testes, evidências e encerramento. Assim eu conferia um resultado concreto antes de passar para a próxima etapa, e não tratava a resposta da IA como prova de que algo funcionava. No final, testei a API na AWS, salvei as evidências e destruí a infraestrutura principal antes do backend, porque o state remoto da principal depende dele.
 
 ## Questão 2 — O Processo com IA como Copiloto
 
-**Pergunta:** Qual ferramenta utilizou, quais foram os prompts principais, o que funcionou e o que precisou corrigir? Compare com fazer manualmente.
+Usei o ChatGPT para gerar parte da solução, organizar os arquivos e me orientar na execução e na revisão dos comandos. No pedido inicial, expliquei o contexto da prova e que o ambiente era o AWS Academy Learner Lab, com a restrição de não criar usuários, grupos ou roles IAM e de usar os recursos que o laboratório já oferece. Os comandos, os testes na AWS e as operações de Git fui eu que executei, e mandei as saídas do terminal e prints de volta para a IA analisar. Resumindo, meus pedidos principais tinham quatro objetivos: gerar a API e os ambientes Docker; montar a infraestrutura modular com state remoto; me guiar na execução no Learner Lab; e conferir as evidências e a entrega. Esses objetivos são um resumo do processo, não a transcrição de todos os prompts.
 
-### Texto inicial
+A IA foi mais útil na estrutura inicial de [app/](app/), [infra/](infra/), [docker-compose.yml](docker-compose.yml) e [scripts/](scripts/), e na ordem de implantação. Também usei o Claude como segunda revisão. Ele leu o código, subiu um PostgreSQL 16 de verdade, rodou a API contra ele e executou o `smoke-test.py`, que passou. Testou ainda a persistência depois de reiniciar a API e entradas inválidas, como JSON quebrado, id gigante e nome com 151 caracteres, que retornaram 400. A revisão apontou melhorias que apareceram na versão seguinte do projeto: avisar sobre a faixa de versão do Terraform, salvar a saída do destroy, do validate e do histórico do Git, destacar que o `deploy.sh` é obrigatório depois do apply e liberar a porta da API para o IP do professor.
 
-Utilizei o ChatGPT como apoio para estruturar os arquivos do projeto e orientar a execução dos comandos. No pedido inicial, destaquei que o ambiente era o AWS Academy Learner Lab e que a solução deveria utilizar os recursos de IAM existentes, sem criar usuários, grupos ou roles. Também solicitei os arquivos completos e executei os comandos no meu ambiente.
+O erro que mais me ensinou foi o do bucket do state, que explico na Questão 3. O ChatGPT sugeriu, num primeiro momento, configurar o bucket por comandos manuais e deixar o código Terraform como estava. Ao revisar essa sugestão com o Claude, vimos que isso deixaria o destroy do backend falhando com o mesmo erro, porque o bucket continuaria no state. Decidi então mudar o código: o commit [133d416](https://github.com/Matiasdocs/prova-primeiro-bimestre-devops/commit/133d416), `fix: adapta bootstrap do backend ao Learner Lab`, passou a criar o bucket com `terraform_data` e `local-exec` pela AWS CLI. A tabela DynamoDB continua como recurso Terraform, e o script de encerramento remove as versões dos objetos antes de apagar o bucket. Esse caso me mostrou que o código gerado precisou ser adaptado durante a execução e que não podia ser considerado definitivo só por ter sido gerado.
 
-Durante a execução, compartilhei saídas do terminal e capturas do console para conferir os resultados. Houve uma adaptação do bootstrap do backend, registrada no commit `fix: adapta bootstrap do backend ao Learner Lab`. Na versão final, o bucket foi configurado por comandos da AWS CLI executados pelo Terraform.
+Na revisão também encontrei uma inconsistência na documentação: o README ainda descrevia a remoção do bucket por `force_destroy=true`, enquanto o backend final já usava a AWS CLI. Isso me mostrou que revisar só o código não basta, porque as instruções precisam acompanhar as mudanças. Outro problema foi a perda de continuidade quando a conversa do ChatGPT travou no meio da execução do backend. Precisei retomar o contexto conferindo os arquivos e o histórico do terminal para saber o que já tinha sido feito.
 
-O apoio também foi usado para conferir os testes de CRUD, reunir evidências e orientar a destruição na ordem correta. Ao retomar o trabalho em outra conversa, foi necessário recuperar o contexto e conferir o histórico dos comandos para identificar as etapas já executadas.
-
-### Desenvolver antes de entregar
-
-- Acrescente exemplos dos seus prompts, identificando se são transcrições ou resumos.
-- Descreva qual parte gerada economizou mais tempo para você e por quê.
-- Explique a dificuldade real que levou à adaptação do backend, consultando o erro original; não presuma a causa.
-- Conte onde a IA atrapalhou ou precisou de correção, com um exemplo verdadeiro.
-- Compare esse processo com o que você precisaria fazer manualmente.
-- Não descreva um fluxo Kiro Spec: a ferramenta informada neste rascunho é o ChatGPT.
-- Transforme os pontos em parágrafos e confira o mínimo de dez linhas.
+Comparando com fazer à mão, a IA reduziu muito o trabalho de escrever as estruturas iniciais e de consultar a sintaxe de várias ferramentas. O apoio rendeu mais quando eu mandava junto uma saída real, como o resultado do CRUD, o conteúdo de um script ou o log do Terraform. Em compensação, uma orientação incompleta ou desatualizada me obrigava a voltar aos arquivos e comandos para confirmar o que acontecia de fato. O tempo ganho na geração não eliminou o tempo de entender o que seria executado e de verificar os resultados. Não usei o Kiro Spec neste projeto. A relação com a Aula 07 está em dar contexto, delimitar as restrições e dividir a execução em partes verificáveis, com a certeza de que a conclusão de cada etapa depende das evidências do ambiente.
 
 ## Questão 3 — Infraestrutura, Segurança e o Learner Lab
 
-**Pergunta:** Explique a arquitetura, a separação entre EC2 pública e RDS privado, o uso de LabRole/LabInstanceProfile e as restrições do Lab.
+A arquitetura roda em `us-east-1`, como a prova exige, em uma VPC `10.40.0.0/16`. O [módulo vpc](infra/modules/vpc/main.tf) declara duas subnets públicas e duas privadas em duas zonas de disponibilidade. As públicas têm rota para o Internet Gateway; a tabela das privadas só mantém a comunicação local da VPC, sem rota para o Internet Gateway e sem NAT Gateway. Essa separação isola a camada que recebe as requisições da camada onde ficam os dados.
 
-### Texto inicial
+A EC2 `t2.micro`, com Amazon Linux 2023, fica em uma subnet pública e recebe IP público, porque precisa ser alcançada por SSH e pela API. O [módulo security-group](infra/modules/security-group/main.tf) limita as entradas TCP 22 e 3000 ao CIDR `/32` informado na configuração. A variável `api_extra_cidrs` permite endereços adicionais só na porta 3000, com lista vazia por padrão. A saída da EC2 libera 80/443 para downloads e 5432 para o Security Group do banco.
 
-A infraestrutura foi provisionada em `us-east-1`, com uma VPC e subnets públicas e privadas distribuídas em duas zonas de disponibilidade. A EC2 `t2.micro` ficou em uma subnet pública para permitir o acesso autorizado à API e ao SSH. O RDS PostgreSQL `db.t3.micro` ficou nas subnets privadas, sem acesso público e com armazenamento criptografado.
+O [módulo rds](infra/modules/rds/main.tf) cria um PostgreSQL 16 `db.t3.micro`, com 20 GB, `storage_encrypted = true` e `publicly_accessible = false`. O DB Subnet Group usa as duas subnets privadas, e o Security Group aceita a porta 5432 somente quando a origem é o Security Group da EC2. O banco é privado porque a aplicação é o único ponto de entrada: os usuários falam com a API, e só ela consulta e altera os dados no PostgreSQL, o que reduz a superfície de ataque. As subnets em duas AZs existem porque o subnet group exige isso, mas o projeto usa `multi_az = false`, então não é uma implantação Multi-AZ.
 
-O Security Group do banco permite a porta 5432 somente a partir do Security Group da EC2. Assim, o acesso ao PostgreSQL acontece pela aplicação, sem expor diretamente o banco à internet. As portas 22 e 3000 da EC2 foram restritas aos endereços autorizados na configuração do projeto.
+A segurança também vale para a conexão entre aplicação e banco. O parâmetro `rds.force_ssl` está em `1`, e o deploy define `DB_SSL=true` com o certificado público oficial da AWS. Em [app/src/index.js](app/src/index.js), o cliente PostgreSQL usa essa CA com `rejectUnauthorized: true`, verificando o certificado do servidor. No ambiente local, o Compose usa `DB_SSL=false`, que é compatível com o PostgreSQL do contêiner.
 
-Utilizei o `LabInstanceProfile` existente, associado à `LabRole`, sem criar recursos próprios de IAM. O backend utilizou S3 com versionamento, criptografia e bloqueio de acesso público, além da tabela DynamoDB `technova-reservas-tf-locks`, com chave `LockID`. O bootstrap do backend manteve seu próprio state local.
+Sobre o IAM, a EC2 referencia o `LabInstanceProfile` que já existe, em [infra/modules/ec2/main.tf](infra/modules/ec2/main.tf), e o projeto não cria nenhum recurso IAM próprio. Esse profile não substitui o usuário e a senha do PostgreSQL: a autenticação da aplicação no RDS é configurada separadamente. O Terraform e a AWS CLI usam as credenciais temporárias do laboratório, incluindo o Session Token, e a região fica fixa em `us-east-1`.
 
-### Desenvolver antes de entregar
+O ajuste mais importante que o Learner Lab me exigiu foi no remote state, e não estava no que foi ensinado em aula. Ao aplicar o backend, o recurso `aws_s3_bucket` falhou com `AccessDenied`: a ação `s3:GetBucketObjectLockConfiguration` está bloqueada por uma service control policy da organização, com `explicit deny`. O provider lê essa configuração logo depois de criar o bucket, então o bucket e a tabela DynamoDB foram criados, mas o apply parou antes de ligar o versionamento, e repetir o apply falharia no mesmo ponto. Fiz um backup do state, removi `aws_s3_bucket.state` do state com `terraform state rm`, que não apaga nada na AWS, e reescrevi o backend com `terraform_data` e AWS CLI. Com isso, o bucket continua com versionamento, criptografia AES256, bloqueio de acesso público e uma política que exige transporte seguro. O backend usa a chave `reservas/terraform.tfstate` e a tabela `technova-reservas-tf-locks` para o lock, conforme [infra/providers.tf](infra/providers.tf). O bootstrap do backend usa state local para não depender do bucket que ainda está criando.
 
-- Explique como configurou as credenciais temporárias e o Session Token, sem incluir seus valores.
-- Relate quais restrições do Lab realmente encontrou durante a execução.
-- Explique a diferença entre subnets em duas AZs e uma instância RDS Multi-AZ.
-- Explique por que o backend é criado primeiro e removido por último.
-- Descreva a conexão da API ao RDS com TLS e a validação do certificado presentes no projeto.
-- Transforme os pontos em parágrafos e confira o mínimo de dez linhas.
+As tags padrão identificam projeto, ambiente e gerenciamento nos recursos que aceitam tags. Algumas associações, como as de route table, não aceitam. Ao encerrar, removi primeiro a infraestrutura da aplicação e depois o backend, porque o Terraform principal ainda precisava do S3 e do DynamoDB para destruir tudo. O backend final tem um procedimento que apaga as versões e os delete markers antes de remover o bucket. Esse caso me mostrou como rede, segurança, módulos e state remoto se conectam e por que as restrições do Lab precisam ser consideradas desde o começo.
 
 ## Questão 4 — Validação e Responsabilidade
 
-**Pergunta:** Qual checklist aplicou antes do apply, como validou segurança e funcionamento, e quais são os riscos de aceitar código de IA sem revisão?
+Antes de aplicar, a revisão seguiu os requisitos do enunciado: região `us-east-1`, nenhum IAM próprio, instâncias micro, RDS em subnets privadas, criptografia e porta 5432 liberada só para o Security Group da EC2. Também separei o que podia ser versionado do que tinha informação sensível, como `.env`, states, planos binários e chaves privadas. O [.gitignore](.gitignore) cobre essas exclusões, e os arquivos de lock das dependências ficam no repositório para reproduzir as versões usadas. Isso reduz o risco de publicar dados do ambiente junto com o código.
 
-### Texto inicial
+Rodei a validação do Terraform na infraestrutura e no backend. Os arquivos [terraform-validate.txt](evidencias/terraform-validate.txt) e [terraform-backend-validate.txt](evidencias/terraform-backend-validate.txt) registram `Success! The configuration is valid.`. O [terraform-plan.txt](evidencias/terraform-plan.txt) que está no projeto mostra uma etapa em que faltavam criar a instância RDS e o DB Subnet Group, com `2 to add, 0 to change, 0 to destroy`; ele não é o plano completo da infraestrutura, e prefiro dizer isso a deixar parecer que é. Nele aparecem PostgreSQL, classe `db.t3.micro`, armazenamento criptografado, acesso público desativado e a referência ao Security Group do banco, o que me deixou confrontar o plano com os requisitos antes de aplicar.
 
-Registrei arquivos de validação do Terraform e do plano de execução na pasta `evidencias`. Na AWS, conferi configurações de rede, regras de Security Groups, acesso público e criptografia do RDS, além do versionamento e da proteção do S3. Essas verificações foram acompanhadas por capturas do console.
+Depois do provisionamento, o deploy precisou de validação separada do `apply`: o [docker-aws.txt](evidencias/docker-aws.txt) é o log do `scripts/deploy.sh`, com o build da imagem na EC2, o retorno `{"status":"ok","database":"ok"}` e a mensagem final “API conectada ao RDS”. O [health-aws.json](evidencias/health-aws.json) confirma a resposta da aplicação e do banco.
 
-O health check retornou `{"status":"ok","database":"ok"}`. Os testes automatizados verificaram criação, leitura, atualização e exclusão de reservas, além de respostas para entradas inválidas e registros inexistentes. Para verificar a persistência, criei a reserva de ID 2, executei novamente o deploy que remove e recria o contêiner e consultei o mesmo registro no RDS.
+O [scripts/smoke-test.py](scripts/smoke-test.py) verificou o CRUD nos ambientes local e AWS. Os registros [crud-local.txt](evidencias/crud-local.txt) e [crud-aws.txt](evidencias/crud-aws.txt) mostram criação com 201, consultas e atualização com 200, exclusão com 204 e respostas 400/404 para entradas inválidas e registros inexistentes. Para a persistência local, salvei a consulta em [persistencia-local.json](evidencias/persistencia-local.json) e o resultado SQL em [postgresql-local.txt](evidencias/postgresql-local.txt). Na AWS, criei a reserva de ID 2, reiniciei o contêiner da API e consultei o mesmo registro, salvo em [persistencia-rds.json](evidencias/persistencia-rds.json). Esse teste mostra que os dados estão no RDS, e não no contêiner da aplicação.
 
-Ao terminar, executei a destruição da infraestrutura principal, com 25 recursos removidos, e depois a destruição do backend, com dois recursos Terraform removidos. As saídas foram salvas com `tee`. O projeto também possui regras no `.gitignore` para evitar o versionamento de arquivos de state, variáveis, chaves e configurações locais com segredos.
+Se eu tivesse aceitado as sugestões da IA sem revisar, poderia dar a tarefa por concluída só porque os recursos foram criados, sem perceber que a API não iniciou ou não conectou no banco. Também haveria risco de liberar acesso demais, publicar segredos ou deixar recursos ligados gastando créditos. No meu processo, a adaptação do backend e a inconsistência que achei no README mostraram que a configuração final e a documentação precisam ser conferidas juntas. Uma validação de sintaxe, um teste HTTP e um print de rede verificam coisas diferentes, e nenhuma delas sozinha prova que a solução inteira está certa. Também aprendi que um arquivo salvo com `tee` não prova que o comando deu certo, porque o `tee` grava a saída mesmo quando o comando falha. Por isso usei `set -o pipefail` e conferi o final de cada saída.
 
-### Desenvolver antes de entregar
+A sequência Git → Docker → Compose → Terraform → módulos me ajudou a organizar a responsabilidade em camadas: o Git registra as mudanças; o Docker define o ambiente da aplicação; o Compose testa a integração local; o Terraform mostra o que vai ser criado antes de criar; e os módulos deixam as dependências da arquitetura visíveis. Depois de salvar as evidências, rodei o destroy com `tee` e `set -o pipefail`. Os logs [terraform-destroy.txt](evidencias/terraform-destroy.txt) e [terraform-backend-destroy.txt](evidencias/terraform-backend-destroy.txt) terminam com 25 e 2 recursos destruídos, respectivamente. A responsabilidade pela entrega continuou sendo minha: considerei válido apenas o que o código, o histórico e as execuções registradas demonstram.
 
-- Descreva apenas as verificações que realmente realizou antes do `apply`, distinguindo-as das verificações posteriores.
-- Confira e explique o resultado de `terraform validate` e o conteúdo do plano salvo.
-- Explique riscos concretos de código não revisado: banco público, permissões excessivas, segredos versionados e custos.
-- Relacione histórico Git, isolamento em contêineres e plano Terraform à possibilidade de revisar e testar mudanças.
-- Explique por que um arquivo de log existente não basta: é necessário conferir o resultado da operação.
-- Transforme os pontos em parágrafos e confira o mínimo de dez linhas.
+## Referências aos materiais da disciplina
 
-## Referências às evidências
-
-- [Histórico Git](evidencias/git-log.txt) e [merges](evidencias/git-merges.txt)
-- [Build Docker](evidencias/docker-build.txt) e [Docker Compose](evidencias/compose-ps.txt)
-- [CRUD local](evidencias/crud-local.txt) e [persistência local](evidencias/persistencia-local.json)
-- [Validação Terraform](evidencias/terraform-validate.txt) e [plano](evidencias/terraform-plan.txt)
-- [Deploy na AWS](evidencias/docker-aws.txt), [CRUD AWS](evidencias/crud-aws.txt) e [health](evidencias/health-aws.json)
-- [Persistência RDS](evidencias/persistencia-rds.json)
-- [Destroy da aplicação](evidencias/terraform-destroy.txt) e [destroy do backend](evidencias/terraform-backend-destroy.txt)
-
-<!-- Antes da entrega: concluir as quatro respostas, remover os roteiros e avisos de rascunho, revisar links e atualizar as evidências do histórico Git. -->
+- [Enunciado da Prova do Primeiro Bimestre](https://github.com/AleTavares/devops_20262/blob/main/provas/prova-primeiro-bimestre.md)
+- [Aula 01 — Fundamentos de Git e Docker](https://github.com/AleTavares/devops_20262/blob/main/aula-01/README.md)
+- [Aula 02 — Docker Compose e IA como Copiloto DevOps](https://github.com/AleTavares/devops_20262/blob/main/aula-02/README.md)
+- [Aula 03 — Terraform e Segurança AWS (IAM)](https://github.com/AleTavares/devops_20262/blob/main/aula-03/README.md)
+- [Aula 04 — VPC, Networking e EC2 na AWS](https://github.com/AleTavares/devops_20262/blob/main/aula-04/README.md)
+- [Aula 05 — RDS e Remote State](https://github.com/AleTavares/devops_20262/blob/main/aula-05/README.md)
+- [Aula 06 — Terraform Modules: Do Básico ao Avançado](https://github.com/AleTavares/devops_20262/blob/main/aula-06/README.md)
+- [Aula 07](https://github.com/AleTavares/devops_20262/blob/main/aula-07/README.md)

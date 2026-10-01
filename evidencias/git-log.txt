@@ -1,4 +1,9 @@
-*   7b35d26 (HEAD -> main) merge: integra implementacao da prova de DevOps
+* 3ce58dd (HEAD -> main) docs: adiciona rascunho do relatorio da prova
+* 4ef787f docs: registra evidencias AWS e destruicao da infraestrutura
+* 133d416 (origin/main, origin/HEAD) fix: adapta bootstrap do backend ao Learner Lab
+* 2c88ab5 chore: registra validacao do Terraform
+* 82d6abe chore: registra historico Git e merge da feature
+*   7b35d26 merge: integra implementacao da prova de DevOps
 |\  
 | * e120e78 (origin/feat/prova-devops, feat/prova-devops) chore: adiciona scripts de deploy e validacao
 | * 3624152 feat: adiciona infraestrutura AWS modular com Terraform
@@ -8,4 +13,4 @@
 | * 27361aa docs: adiciona roteiro do projeto e identificacao do aluno
 | * 1552bea chore: configura arquivos ignorados pelo Git
 |/  
-* a628495 (origin/main, origin/HEAD) Initial commit
+* a628495 Initial commit

@@ -1,2 +1,7 @@
-output "bucket_name" { value = aws_s3_bucket.state.id }
-output "dynamodb_table" { value = aws_dynamodb_table.locks.name }
+output "bucket_name" {
+  value = local.bucket_name
+}
+
+output "dynamodb_table" {
+  value = aws_dynamodb_table.locks.name
+}
